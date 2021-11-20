@@ -8,3 +8,11 @@ Analysis Includes
 - Overall Analysis
 - Country Wise Analysis
 - Athletes Wise Analysis
+
+Tools
+
+- Matplotlib
+- Seaborn
+- Plotly
+- Pandas
+- Streamlit
