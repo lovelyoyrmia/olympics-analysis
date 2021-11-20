@@ -181,3 +181,5 @@ else:
    final = hp.men__v_women(df)
    fig = px.line(final, x='Year', y=['Male', 'Female'])
    st.plotly_chart(fig)
+
+st.sidebar.text('Created by Lovelyo - Campus X')
