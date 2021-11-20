@@ -99,16 +99,34 @@ def athleteswise_analysis(athletes_df):
    famous_sports = ['Basketball', 'Judo', 'Football', 'Tug-Of-War', 'Athletics', 'Swimming',
                      'Badminton', 'Sailing', 'Gymnastics', 'Art Competitions', 'Handball',
                      'Weightlifting', 'Wrestling', 'Water Polo', 'Hockey', 'Rowing', 'Fencing',
-                     'Equestrianism', 'Shooting', 'Boxing', 'Taekwondo', 'Cycling', 'Diving',
-                     'Canoeing', 'Tennis', 'Modern Pentathlon', 'Golf', 'Softball', 'Archery',
+                     'Shooting', 'Boxing', 'Taekwondo', 'Cycling', 'Diving',
+                     'Canoeing', 'Tennis', 'Golf', 'Softball', 'Archery',
                      'Volleyball', 'Synchronized Swimming', 'Table Tennis', 'Baseball',
-                     'Rhythmic Gymnastics', 'Rugby Sevens', 'Trampolining', 'Beach Volleyball',
-                     'Triathlon', 'Rugby', 'Lacrosse', 'Polo', 'Cricket', 'Ice Hockey', 'Racquets',
-                     'Motorboating', 'Croquet', 'Figure Skating', 'Jeu De Paume', 'Roque',
-                     'Basque Pelota', 'Alpinism', 'Aeronautics']
+                     'Rhythmic Gymnastics', 'Rugby Sevens', 'Beach Volleyball',
+                     'Triathlon', 'Rugby', 'Lacrosse', 'Polo', 'Cricket', 'Ice Hockey']
    for sport in famous_sports:
       temp_df = athletes_df[athletes_df['Sport'] == sport]
       x.append(temp_df[temp_df['Medal'] == 'Gold']['Age'].dropna())
       name.append(sport)
 
    return x, name
+
+def weight_v_height(df, sport):
+   athletes_df = df.drop_duplicates(subset=['Name', 'region'])
+   athletes_df['Medal'].fillna('No Medal', inplace=True)
+   if sport != 'Overall':
+      temp_df = athletes_df[athletes_df['Sport'] == sport]
+      return temp_df
+   else:
+      return athletes_df
+
+def men__v_women(df):
+   athletes_df = df.drop_duplicates(subset=['Name', 'region'])
+   men = athletes_df[athletes_df['Sex'] == 'M'].groupby('Year').count()['Name'].reset_index()
+   women = athletes_df[athletes_df['Sex'] == 'F'].groupby('Year').count()['Name'].reset_index()
+
+   final = men.merge(women, on='Year', how='left')
+   final.rename(columns={'Name_x': 'Male', 'Name_y': 'Female'}, inplace=True)
+
+   final.fillna(0, inplace=True)
+   return final
