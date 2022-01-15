@@ -1,6 +1,6 @@
 # Olympics Analysis
 
-[Dataset Olympics](https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results)
+[Dataset Olympics](https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results) [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/lovelyoyrmia/olympics-analysis/app.py)
 
 Analysis Includes
 
@@ -16,5 +16,3 @@ Tools
 - Plotly
 - Pandas
 - Streamlit
-
-[Link Website](https://bit.ly/3ngEM2t)
